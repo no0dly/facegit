@@ -41,4 +41,8 @@ describe("UserPage", () => {
     });
     expect(wrapper.find(Followers).prop("login")).toEqual("test");
   });
+  it("Should should show logout button on isAuthorized === true", () => {
+    wrapper.setProps({ isAuthorized: true });
+    expect(wrapper.find("button.logout")).toHaveLength(1);
+  });
 });

@@ -104,7 +104,7 @@ export class UserPage extends Component {
         {isAuthorized ? (
           <button
             onClick={this.logout}
-            className="button is-danger is-pulled-right"
+            className="button logout is-danger is-pulled-right"
           >
             Log Out
           </button>

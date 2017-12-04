@@ -1,27 +1,27 @@
-import {handleActions} from 'redux-actions';
-import {combineReducers} from 'redux';
-import {clearNetworkErrors, networkError} from '../actions/network';
+import { handleActions } from "redux-actions";
+import { combineReducers } from "redux";
+import { clearNetworkErrors, networkError } from "../actions/network";
 
 const error = handleActions(
   {
     [clearNetworkErrors]: () => null,
-    [networkError]: (state, action) => action.payload,
+    [networkError]: (state, action) => {
+      // console.log(action.payload);
+      return action.payload;
+    }
   },
-  null,
+  null
 );
 
 const message = handleActions(
   {
     [clearNetworkErrors]: () => null,
-    [networkError]: (state, action) => action.payload.response.data.message,
+    [networkError]: (state, action) => action.payload.response.data.message
   },
-  null,
+  null
 );
 
-export default combineReducers({
-  error,
-  message,
-});
+export default combineReducers({ error, message });
 
 export const getIsNetworkErrorPresent = state => state.network.error != null;
 export const getNetworkError = state => state.network.message;

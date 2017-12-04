@@ -1,6 +1,6 @@
-import {createActions} from 'redux-actions';
+import { createActions } from "redux-actions";
 
-export const {clearNetworkErrors, networkError} = createActions(
-  'CLEAR_NETWORK_ERRORS',
-  'NETWORK_ERROR',
+export const { clearNetworkErrors, networkError } = createActions(
+  "CLEAR_NETWORK_ERRORS",
+  "NETWORK_ERROR"
 );

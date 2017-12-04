@@ -45,7 +45,7 @@ export class AuthPage extends Component {
               You can get it on github. Push ENTER to submit
             </p>
           </div>
-          {networkError && <p>{networkErrorText}</p>}
+          {networkError && <p className="error">{networkErrorText}</p>}
         </div>
       </div>
     );

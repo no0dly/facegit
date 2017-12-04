@@ -1,7 +1,7 @@
-import {call, put, select} from 'redux-saga/effects';
-import {clearNetworkErrors, networkError} from '../actions/network';
-import {logout} from '../actions/auth';
-import {getIsNetworkErrorPresent} from '../reducers/network';
+import { call, put, select } from "redux-saga/effects";
+import { clearNetworkErrors, networkError } from "../actions/network";
+import { logout } from "../actions/auth";
+import { getIsNetworkErrorPresent } from "../reducers/network";
 
 export default function*(fn, args) {
   try {
