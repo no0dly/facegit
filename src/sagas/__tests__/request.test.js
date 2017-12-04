@@ -6,7 +6,7 @@ import { logout } from "../../actions/auth";
 
 describe("request saga", () => {
   describe("true branch", () => {
-    const fn = () => {};
+    const fn = jest.fn();
     const args = "blob";
     const saga = request(fn, args);
     it("Should do call(fn, args)", () => {
@@ -20,27 +20,20 @@ describe("request saga", () => {
     });
   });
   describe("in case error", () => {
-    const fn = () => {};
+    const fn = jest.fn();
     const args = "blob";
     const error = {
       response: {
-        data: {
-          error: "blaBla",
-          message: "blublu",
-          status: "401"
-        }
+        status: "401"
       }
     };
     const saga = request(fn, args);
-
     saga.next();
     it("Should dispatch networkError", () => {
-      expect(saga.throw(new Error()).value).toEqual(
-        put(networkError(new Error()))
-      );
+      expect(saga.throw(error).value).toEqual(put(networkError(error)));
     });
-    // it("Should dispatch logout in case 401 status", () => {
-    //   expect(saga.next().value).toEqual(put(logout()));
-    // });
+    it("Should dispatch logout in case 401 status", () => {
+      expect(saga.next(error.response.status).value).toEqual(put(logout()));
+    });
   });
 });
