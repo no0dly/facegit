@@ -22,18 +22,18 @@ describe("request saga", () => {
   describe("in case error", () => {
     const fn = jest.fn();
     const args = "blob";
+    const saga = request(fn, args);
     const error = {
       response: {
-        status: "401"
+        status: 401
       }
     };
-    const saga = request(fn, args);
     saga.next();
     it("Should dispatch networkError", () => {
       expect(saga.throw(error).value).toEqual(put(networkError(error)));
     });
-    // it("Should dispatch logout in case 401 status", () => {
-    //   expect(saga.next(error.response.status).value).toEqual(put(logout()));
-    // });
+    it("Should dispatch logout in case 401 status", () => {
+      expect(saga.next(error.response.status).value).toEqual(put(logout()));
+    });
   });
 });
