@@ -5,6 +5,8 @@ import {
   fetchFollowersFailure
 } from "../../actions/followers";
 
+import requestFlow from "../request";
+
 import { call, put } from "redux-saga/effects";
 
 describe("Followers saga", () => {
@@ -17,7 +19,9 @@ describe("Followers saga", () => {
   };
   const saga = fetchFollowersRequestSaga(action);
   it("Should make call method with correct parameters", () => {
-    expect(saga.next().value).toEqual(call(getUserFollowers, "login"));
+    expect(saga.next().value).toEqual(
+      call(requestFlow, getUserFollowers, "login")
+    );
   });
   it("Should dispatch fetchFollowersSuccess action", () => {
     expect(saga.next(data).value).toEqual(

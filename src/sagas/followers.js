@@ -7,9 +7,11 @@ import {
 
 import { getUserFollowers } from "../api";
 
+import requestFlow from "./request";
+
 export function* fetchFollowersRequestSaga(action) {
   try {
-    const followers = yield call(getUserFollowers, action.payload);
+    const followers = yield call(requestFlow, getUserFollowers, action.payload);
     yield put(fetchFollowersSuccess(followers.data));
   } catch (error) {
     yield put(fetchFollowersFailure(error));

@@ -5,10 +5,7 @@ import { clearNetworkErrors, networkError } from "../actions/network";
 const error = handleActions(
   {
     [clearNetworkErrors]: () => null,
-    [networkError]: (state, action) => {
-      // console.log(action.payload);
-      return action.payload;
-    }
+    [networkError]: (state, action) => action.payload
   },
   null
 );
