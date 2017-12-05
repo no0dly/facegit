@@ -41,6 +41,7 @@ export class UserPage extends Component {
     const userName = this.props.match.params.name;
     const newUserName = nextProps.match.params.name;
     const { fetchUserDataRequest } = this.props;
+
     if (newUserName !== userName) {
       fetchUserDataRequest(newUserName);
     }
@@ -61,9 +62,6 @@ export class UserPage extends Component {
       error
     } = this.props;
 
-    if (userNickname && this.props.match.params.name !== userNickname) {
-      return <Redirect to={`/user/${userNickname}`} />;
-    }
     if (isFetching) {
       return <Spinner size="64px" color="fuchsia" gap={5} />;
     } else if (!isFetching && isFetched && !userName) {

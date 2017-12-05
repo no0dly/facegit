@@ -5,10 +5,10 @@ import { clearNetworkErrors, networkError } from "../../actions/network";
 import { logout } from "../../actions/auth";
 
 describe("request saga", () => {
+  const fn = jest.fn();
+  const args = "blob";
+  const saga = request(fn, args);
   describe("true branch", () => {
-    const fn = jest.fn();
-    const args = "blob";
-    const saga = request(fn, args);
     it("Should do call(fn, args)", () => {
       expect(saga.next().value).toEqual(call(fn, args));
     });
